@@ -1,0 +1,17 @@
+{
+	"name": "distributed_tables",
+	"properties": {
+		"content": {
+			"query": "create table round_table(\n    id int,\n    name varchar(20),\n    salary int\n)\nwith(\n    distribution = ROUND_ROBIN\n)\n\n\ninsert into round_table VALUES(1,'sathvik', 5000)\n\nselect * from round_table\n\n\n\n\ncreate schema gold\n\n\n\ncreate table gold.dim_product(\n    dim_key_prod int,\n    prod_id int,\n    prod_name VARCHAR(4000)\n)\nwith(\n    DISTRIBUTION = REPLICATE\n)\n\n\n\n\ncreate table gold.claimfact(\n    dim_key_prod int,\n    revenue int,\n    cost int\n)\nwith(\n    DISTRIBUTION = HASH(dim_key_prod)\n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "dedspdev",
+				"poolName": "dedspdev"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
